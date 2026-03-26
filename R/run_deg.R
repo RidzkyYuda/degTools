@@ -16,6 +16,7 @@ run_DEG <- function(seurat_obj,
 
   options(future.globals.maxSize = 26000 * 1024^2)
 
+  Seurat::DefaultAssay(seurat_obj) <- "RNA"
   Idents(seurat_obj) <- "cell_type"
 
   DEG <- Seurat::FindMarkers(
@@ -25,6 +26,7 @@ run_DEG <- function(seurat_obj,
     test.use = "wilcox",
     subset.ident = cluster_name,
     group.by = "condition",
+    assay = "RNA"
     verbose = FALSE
   )
 
