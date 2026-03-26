@@ -26,7 +26,7 @@ run_DEG <- function(seurat_obj,
     test.use = "wilcox",
     subset.ident = cluster_name,
     group.by = "condition",
-    assay = "RNA"
+    assay = "RNA",
     verbose = FALSE
   )
 
