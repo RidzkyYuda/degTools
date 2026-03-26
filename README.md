@@ -1,0 +1,1 @@
+This package degTools can help you to do differential analysis of single-cell RNA-seq data comparing two conditions (treatment vs. control) in specific cluster with or without considering the data batches
