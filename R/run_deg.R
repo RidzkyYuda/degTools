@@ -38,21 +38,31 @@ run_DEG <- function(seurat_obj,
                         feature_type == "TE",
                         p_val_adj < 0.05)
 
+  DEGonly <- dplyr::filter(DEG_anno,
+                        feature_type == "Gene",
+                        p_val_adj < 0.05)
+
   prefix <- paste0(cohort_name, ".", cluster_name, ".clust")
 
   WriteXLS::WriteXLS(
     DEG_anno,
-    file.path(outdir, paste0("AllCohorts.", prefix, ".DEG.xlsx"))
+    file.path(outdir, paste0("AllCohorts.", prefix, ".DEG.genes.and.TE.xlsx"))
+  )
+
+  WriteXLS::WriteXLS(
+    DEGonly,
+    file.path(outdir, paste0("AllCohorts.", prefix, ".DEG.genes.only.xlsx"))
   )
 
   WriteXLS::WriteXLS(
     DETE,
     file.path(outdir, paste0("AllCohorts.", prefix, ".DETE.xlsx"))
   )
-
+  
+  ################## create volcano plot for TE ########
   DETE_volcano <- dplyr::filter(DEG_anno, feature_type == "TE")
 
-  volcano_plot <- EnhancedVolcano::EnhancedVolcano(
+  volcano_plot_TE <- EnhancedVolcano::EnhancedVolcano(
     DETE_volcano,
     lab = DETE_volcano$gene,
     x = "avg_log2FC",
@@ -61,6 +71,20 @@ run_DEG <- function(seurat_obj,
 
   ggplot2::ggsave(
     file.path(outdir, paste0("AllCohorts.", prefix, ".pdf")),
-    volcano_plot
+    volcano_plot_TE
+  )
+
+  ############### create volcano plot for genes #########
+  DEG_volcano <- dplyr::filter(DEG_anno, feature_type == "Gene")
+  volcano_plot_genes <- EnhancedVolcano::EnhancedVolcano(
+    DEG_volcano,
+    lab = DEG_volcano$gene,
+    x = "avg_log2FC",
+    y = "p_val_adj"
+  )
+
+  ggplot2::ggsave(
+    file.path(outdir, paste0("AllCohorts.", prefix, ".pdf")),
+    volcano_plot_genes
   )
 }
