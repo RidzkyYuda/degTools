@@ -16,7 +16,7 @@ run_DEG <- function(seurat_obj,
 
   options(future.globals.maxSize = 26000 * 1024^2)
 
-  Seurat::DefaultAssay(seurat_obj) <- "RNA"
+  DefaultAssay(seurat_obj) <- "RNA"
   Idents(seurat_obj) <- "cell_type"
 
   DEG <- Seurat::FindMarkers(
