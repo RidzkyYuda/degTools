@@ -81,8 +81,7 @@ run_DEG <- function(seurat_obj,
     x = "avg_log2FC",
     y = "p_val_adj",
     FCcutoff = 0.1,
-    pCutoff = 0.05,
-    title = paste0(prefix, " TE volcano")
+    pCutoff = 0.05
   )
 
   ggplot2::ggsave(
@@ -98,8 +97,7 @@ run_DEG <- function(seurat_obj,
     x = "avg_log2FC",
     y = "p_val_adj",
     FCcutoff = 0.58,
-    pCutoff = 0.05,
-    title = paste0(prefix, " Gene volcano")
+    pCutoff = 0.05
   )
 
   ggplot2::ggsave(
