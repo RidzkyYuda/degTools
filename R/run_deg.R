@@ -132,9 +132,7 @@ run_DEG <- function(seurat_obj,
 
     ggplot2::ggsave(
       file.path(outdir, paste0("AllCohorts.", prefix, ".TE.volcano.pdf")),
-      volcano_plot_TE,
-      width = 7,
-      height = 6
+      volcano_plot_TE
     )
 
   } else {
@@ -166,9 +164,7 @@ run_DEG <- function(seurat_obj,
 
     ggplot2::ggsave(
       file.path(outdir, paste0("AllCohorts.", prefix, ".genes.volcano.pdf")),
-      volcano_plot_genes,
-      width = 7,
-      height = 6
+      volcano_plot_genes
     )
 
   } else {
