@@ -80,8 +80,7 @@ run_DEG <- function(seurat_obj,
     lab = DETE_volcano$gene,
     x = "avg_log2FC",
     y = "p_val_adj",
-    FCcutoff = 0.1,
-    pCutoff = 0.05
+    FCcutoff = 0.1
   )
 
   ggplot2::ggsave(
@@ -96,8 +95,7 @@ run_DEG <- function(seurat_obj,
     lab = DEG_volcano$gene,
     x = "avg_log2FC",
     y = "p_val_adj",
-    FCcutoff = 0.58,
-    pCutoff = 0.05
+    FCcutoff = 0.58
   )
 
   ggplot2::ggsave(
